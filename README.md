@@ -9,9 +9,12 @@ Single Page Passwordless samples include:
 * Login with a **one time code** via **sms** using **Lock**
 * Login with a **one time code** via **email** using **Lock**
 * Login with a **magic link** via **email** using **Lock**
+* Login with **Guardian** using **Lock**
 * Login with a **one time code** via **sms** using your **own UI**
 * Login with a **one time code** via **email** using your **own UI**
 * Login with a **magic link** via **email** using your **own UI**
+* Login with **Guardian** using your **own UI**
+
 
 You can read more about Passwordless Authentication on our [Doc's Site](https://auth0.com/docs/connections/passwordless), where you will find the complete Single Page App tutorials for:
 
