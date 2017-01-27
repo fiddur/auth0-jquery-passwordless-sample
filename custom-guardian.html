@@ -40,8 +40,7 @@
       </div>
     </div>
 
-    <!-- FIXME: Don't use development cdn on merge of this! -->
-    <script src="https://cdn.auth0.com/js/auth0/development/auth0.min.js"></script>
+    <script src="https://cdn.auth0.com/js/auth0/8.1/auth0.min.js"></script>
     <script type="text/javascript">
      const webauth = new auth0.WebAuth({
        clientID:     AUTH0_CLIENT_ID,
@@ -50,25 +49,27 @@
        responseType: 'token'
      });
 
-     const result = webauth.parseHash(window.location.hash);
-     if (result && result.accessToken) {
-       webauth.client.userInfo(
-         result.accessToken,
-         (err, result) => {
-           $('.container').html(
-             '<h1>Logged in!</h1><pre style="text-align: left">'
-             + JSON.stringify(result, null, '  ') + '</pre>'
-           )
-         }
-       );
-     } else if (result && result.error) {
-       alert('error: ' + result.error);
-     }
+     webauth.parseHash(window.location.hash, function(err, result) {
+       if (result && result.accessToken) {
+         webauth.client.userInfo(
+           result.accessToken,
+           (err, result) => {
+             $('.container').html(
+               '<h1>Logged in!</h1><pre style="text-align: left">'
+               + JSON.stringify(result, null, '  ') + '</pre>'
+             )
+           }
+         );
+       } else if (result && result.error) {
+         alert('error: ' + result.error);
+       }
+     });
+
 
      function login(){
        var username = $('input.username').val();
 
-       webauth.login({
+       webauth.authorize({
          connection: 'guardian',
          login_hint: username
        })
